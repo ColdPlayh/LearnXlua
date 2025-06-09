@@ -23,3 +23,33 @@ testFun4 =function (a,...)
         print(k,v)
     end  
 end
+testList={1,2,3,4,5,6}
+testList2={"123","123",true,1,1.2}
+testDic={
+["1"] = 1,
+["2"] = 2,
+["3"]=3,
+["4"]=4,
+
+}
+testDic2={
+
+	["1"]=1,
+	[true]=1,
+	[false]=true,
+	["123"]=false
+}
+
+testTable={
+
+	testInt=2,
+	testBool=true,
+	testFloat=1.2,
+	testString="123",
+	testFunc= function()
+		print("table s func")
+	end,
+	-- testInTable={
+	-- 	testInInt=10
+	-- }
+}

@@ -1,5 +1,8 @@
-﻿using UnityEngine;
+using UnityEngine;
 using XLua;
+/// <summary>
+/// Lua解释器
+/// </summary>
 public class Learn1_LuaEnv : MonoBehaviour
 {
     void Start()
@@ -19,7 +22,7 @@ public class Learn1_LuaEnv : MonoBehaviour
 
         env.DoString("require('Main')");
 
-        //帮助我们清楚Lua中我们没有手动释放的对象 垃圾回收
+        //清楚Lua中没有手动释放的对象 垃圾回收
         //帧更新中定时执行 或者 切场景时执行
         env.Tick();
 
