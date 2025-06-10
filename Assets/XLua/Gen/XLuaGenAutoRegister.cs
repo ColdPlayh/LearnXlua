@@ -19,15 +19,30 @@ namespace XLua.CSObjectWrap
 	{
         
         
+        static void wrapInit0(LuaEnv luaenv, ObjectTranslator translator)
+        {
+        
+            translator.DelayWrapLoader(typeof(Tools), ToolsWrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(Learn9), Learn9Wrap.__Register);
+        
+        
+            translator.DelayWrapLoader(typeof(UnityEngine.GameObject), UnityEngineGameObjectWrap.__Register);
         
         
         
+        }
         
         static void Init(LuaEnv luaenv, ObjectTranslator translator)
         {
             
+            wrapInit0(luaenv, translator);
+            
             
             translator.AddInterfaceBridgeCreator(typeof(CsharpCallInterface), CsharpCallInterfaceBridge.__Create);
+            
+            translator.AddInterfaceBridgeCreator(typeof(System.Collections.IEnumerator), SystemCollectionsIEnumeratorBridge.__Create);
             
         }
         
@@ -51,11 +66,37 @@ namespace XLua
 	internal partial class InternalGlobals
     {
 	    
+		delegate void __GEN_DELEGATE0( Learn4 learn4);
+		
+		delegate bool __GEN_DELEGATE1( UnityEngine.Object obj);
+		
 	    static InternalGlobals()
 		{
 		    extensionMethodMap = new Dictionary<Type, IEnumerable<MethodInfo>>()
 			{
 			    
+				{typeof(Learn4), new List<MethodInfo>(){
+				
+				  new __GEN_DELEGATE0(Tools.Move)
+#if UNITY_WSA && !UNITY_EDITOR
+                                      .GetMethodInfo(),
+#else
+                                      .Method,
+#endif
+				
+				}},
+				
+				{typeof(UnityEngine.Object), new List<MethodInfo>(){
+				
+				  new __GEN_DELEGATE1(Learn9.IsNull)
+#if UNITY_WSA && !UNITY_EDITOR
+                                      .GetMethodInfo(),
+#else
+                                      .Method,
+#endif
+				
+				}},
+				
 			};
 			
 			genTryArrayGetPtr = StaticLuaCallbacks.__tryArrayGet;

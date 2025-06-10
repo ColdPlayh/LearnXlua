@@ -2,4 +2,15 @@
 
 <linker>
 
+	<assembly fullname="Assembly-CSharp">
+	    <type fullname="Tools" preserve="all"/>
+		<type fullname="Learn9" preserve="all"/>
+		
+	</assembly>
+
+	<assembly fullname="UnityEngine.CoreModule">
+	    <type fullname="UnityEngine.GameObject" preserve="all"/>
+		
+	</assembly>
+
 </linker>

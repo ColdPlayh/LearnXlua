@@ -33,7 +33,7 @@ public class LuaMgr : BaseManager<LuaMgr>
     {
         if (luaEnv == null)
         {
-            Debug.LogError("LuaEnv instance is null");
+            Debug.Log("LuaEnv instance is null");
         }
         luaEnv.DoString(str);
     }
@@ -67,7 +67,7 @@ public class LuaMgr : BaseManager<LuaMgr>
 
         if (!File.Exists(path))
         {
-            Debug.LogError("Lua file not found");
+            Debug.Log("Lua file not found");
             return null;
         }
         return File.ReadAllBytes(path);
@@ -79,7 +79,8 @@ public class LuaMgr : BaseManager<LuaMgr>
         TextAsset textAsset = ABMgr.GetInstance().LoadRes<TextAsset>("lua", fillPath + ".lua");
         if (textAsset == null)
         {
-            Debug.LogError("lua file {fillPath} not found in AssetBundle");
+            Debug.Log("lua file {fillPath} not found in AssetBundle");
+            return null;
         }
         return textAsset.bytes;
     }
