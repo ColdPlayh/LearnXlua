@@ -25,7 +25,8 @@ public class Learn4_CallVariable : MonoBehaviour
 
         bool b = LuaMgr.GetInstance().Global.Get<bool>("testBool");
         Debug.Log("testBool:" + b);
-        //虽然Lua只有number，但C#可以用实际类型获取
+        //虽然Lua只有number，但C#可以用实际类型获取 
+        //注意溢出
         float f = LuaMgr.GetInstance().Global.Get<float>("testFloat");
         Debug.Log("testFloat:" + f);
         //支持自动类型转换 double = float

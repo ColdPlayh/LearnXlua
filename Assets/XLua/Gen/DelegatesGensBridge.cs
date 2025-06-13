@@ -94,7 +94,29 @@ namespace XLua
 #endif
 		}
         
-		public void __Gen_Delegate_Imp3(float p0)
+		public void __Gen_Delegate_Imp3(bool p0)
+		{
+#if THREAD_SAFE || HOTFIX_ENABLE
+            lock (luaEnv.luaEnvLock)
+            {
+#endif
+                RealStatePtr L = luaEnv.rawL;
+                int errFunc = LuaAPI.pcall_prepare(L, errorFuncRef, luaReference);
+                
+                LuaAPI.lua_pushboolean(L, p0);
+                
+                PCall(L, 1, 0, errFunc);
+                
+                
+                
+                LuaAPI.lua_settop(L, errFunc - 1);
+                
+#if THREAD_SAFE || HOTFIX_ENABLE
+            }
+#endif
+		}
+        
+		public void __Gen_Delegate_Imp4(float p0)
 		{
 #if THREAD_SAFE || HOTFIX_ENABLE
             lock (luaEnv.luaEnvLock)
@@ -140,9 +162,14 @@ namespace XLua
 			    return new CustomCall4(__Gen_Delegate_Imp2);
 			}
 		
+		    if (type == typeof(UnityEngine.Events.UnityAction<bool>))
+			{
+			    return new UnityEngine.Events.UnityAction<bool>(__Gen_Delegate_Imp3);
+			}
+		
 		    if (type == typeof(UnityEngine.Events.UnityAction<float>))
 			{
-			    return new UnityEngine.Events.UnityAction<float>(__Gen_Delegate_Imp3);
+			    return new UnityEngine.Events.UnityAction<float>(__Gen_Delegate_Imp4);
 			}
 		
 		    return null;

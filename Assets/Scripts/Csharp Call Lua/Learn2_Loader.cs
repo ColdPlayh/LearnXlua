@@ -1,6 +1,9 @@
 using System.IO;
 using UnityEngine;
 using XLua;
+/// <summary>
+/// 自定义Loader
+/// </summary>
 public class Learn2_Loader : MonoBehaviour
 {
     void Start()

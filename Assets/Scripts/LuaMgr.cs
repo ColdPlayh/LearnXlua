@@ -20,8 +20,9 @@ public class LuaMgr : BaseManager<LuaMgr>
     {
         if (luaEnv != null) return;
         luaEnv = new LuaEnv();
-
-        luaEnv.AddLoader(MyCustomLoader);
+        //从Lua文件夹加载
+        // luaEnv.AddLoader(MyCustomLoader);
+        //从AB包加载
         luaEnv.AddLoader(MyCustomABLoader);
 
     }
@@ -67,10 +68,11 @@ public class LuaMgr : BaseManager<LuaMgr>
 
         if (!File.Exists(path))
         {
-            Debug.Log("Lua file not found");
+            Debug.Log("Lua file not found:" + path);
             return null;
         }
         return File.ReadAllBytes(path);
+        
 
     }
     //从AB包中加载lua文件

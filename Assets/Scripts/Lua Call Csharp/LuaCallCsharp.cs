@@ -236,9 +236,6 @@ public class Learn12
     {
         Debug.Log("有参数有约束(接口)的泛型");
     }
-    
-    
-    
 
 }
 #endregion
