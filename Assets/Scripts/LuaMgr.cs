@@ -20,10 +20,14 @@ public class LuaMgr : BaseManager<LuaMgr>
     {
         if (luaEnv != null) return;
         luaEnv = new LuaEnv();
-        //从Lua文件夹加载
-        // luaEnv.AddLoader(MyCustomLoader);
         //从AB包加载
-        luaEnv.AddLoader(MyCustomABLoader);
+        // luaEnv.AddLoader(MyCustomABLoader);
+        //从Lua文件夹加载
+        luaEnv.AddLoader(MyCustomLoaderLearnBag);
+        //从LearnXlua加载
+         luaEnv.AddLoader(MyCustomLoaderLearnXlua);
+        
+        
 
     }
     /// <summary>
@@ -60,11 +64,11 @@ public class LuaMgr : BaseManager<LuaMgr>
         luaEnv = null;
     }
     //自定义加载器
-    private byte[] MyCustomLoader(ref string fillPath)
+    private byte[] MyCustomLoaderLearnBag(ref string fillPath)
     {
 
-        string path = Application.dataPath + "/Lua/" + fillPath + ".lua";
-        // Debug.Log($"load lua file from path: {path}");
+        string path = Application.dataPath + "/Lua/LearnBag/" + fillPath + ".lua";
+        Debug.Log($"load lua file from path: {path}");
 
         if (!File.Exists(path))
         {
@@ -73,6 +77,22 @@ public class LuaMgr : BaseManager<LuaMgr>
         }
         return File.ReadAllBytes(path);
         
+
+    }
+    //sub
+    private byte[] MyCustomLoaderLearnXlua(ref string fillPath)
+    {
+
+        string path = Application.dataPath + "/Lua/LearnXlua/" + fillPath + ".lua";
+        Debug.Log($"load lua file from path: {path}");
+
+        if (!File.Exists(path))
+        {
+            Debug.Log("Lua file not found:" + path);
+            return null;
+        }
+        return File.ReadAllBytes(path);
+
 
     }
     //从AB包中加载lua文件
@@ -84,6 +104,7 @@ public class LuaMgr : BaseManager<LuaMgr>
             Debug.Log("lua file {fillPath} not found in AssetBundle");
             return null;
         }
+        Debug.Log($"load lua file from AssetBundle lua name {fillPath}");
         return textAsset.bytes;
     }
 }
